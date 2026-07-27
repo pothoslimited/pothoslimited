@@ -16,6 +16,6 @@ Then open `http://localhost:8000` in a browser. Using a local server is recommen
 
 Upload the repository contents to any static host, such as Netlify, Cloudflare Pages, GitHub Pages, or a conventional web server. Set the publish directory to the repository root and do not configure a build command.
 
-The production metadata currently uses `https://pothoslimited.net/`. If the production domain changes, update the canonical URL and Open Graph URLs in `index.html`.
+The production metadata currently uses `https://pothosltd.com/`. If the production domain changes, update the canonical URL and Open Graph URLs in `index.html`.
 
 Before publishing, confirm that every referenced file exists and test the page at mobile and desktop widths.
