@@ -7,6 +7,11 @@
         name="viewport"
         content="width=device-width, initial-scale=1"
     >
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta
+        http-equiv="Content-Security-Policy"
+        content="default-src 'self'; base-uri 'self'; connect-src 'self'; form-action 'none'; frame-src 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests"
+    >
 
     <meta
         name="description"
@@ -67,7 +72,18 @@
         href="assets/favicon-mark.png"
         sizes="180x180"
     >
-    <link rel="preload" as="image" href="assets/hero-construction.jpg">
+    <link
+        rel="preload"
+        as="image"
+        href="assets/hero-construction.webp"
+        imagesrcset="
+            assets/hero-construction-800.webp 800w,
+            assets/hero-construction.webp 1600w
+        "
+        imagesizes="100vw"
+        type="image/webp"
+        fetchpriority="high"
+    >
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
     <script type="application/ld+json">
@@ -138,7 +154,7 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <nav class="site-nav" aria-label="Main navigation">
-        <a class="logo-link" href="#home" aria-label="Pothos Limited home">
+        <a class="logo-link" href="#home">
             <img
                 src="assets/favicon-mark.png"
                 alt=""
@@ -148,7 +164,7 @@
                 fetchpriority="high"
             >
 
-            <span class="logo-copy" aria-hidden="true">
+            <span class="logo-copy">
                 <span class="logo-name">Pothos Limited</span>
                 <span class="logo-tagline">
                     Design. Management. Construction.
@@ -174,6 +190,21 @@
 
     <main id="main-content">
         <header class="hero page-section" id="home">
+            <img
+                class="hero-background"
+                src="assets/hero-construction.webp"
+                srcset="
+                    assets/hero-construction-800.webp 800w,
+                    assets/hero-construction.webp 1600w
+                "
+                sizes="100vw"
+                alt=""
+                width="1600"
+                height="640"
+                fetchpriority="high"
+                decoding="async"
+            >
+
             <div class="hero-content">
                 <p class="hero-label">Pothos Limited</p>
 
@@ -247,53 +278,80 @@
                             class="project-gallery project-gallery-four"
                             aria-label="Mystic Thai and Mezza Luna Restaurants project photos"
                         >
-                            <div class="project-photo project-photo-featured">
+                            <button
+                                class="project-photo project-photo-featured"
+                                type="button"
+                            >
                                 <img
-                                    src="assets/mezza-luna-dining.jpeg"
+                                    src="assets/mezza-luna-dining.webp"
+                                    srcset="
+                                        assets/responsive/mezza-luna-dining.webp 800w,
+                                        assets/mezza-luna-dining.webp 900w
+                                    "
+                                    sizes="50vw"
                                     alt="Mezza Luna restaurant dining room with curved timber ceiling"
                                     class="project-image"
                                     width="900"
                                     height="1600"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
-                                    src="assets/mezza-luna-terrace.jpeg"
+                                    src="assets/mezza-luna-terrace.webp"
+                                    srcset="
+                                        assets/responsive/mezza-luna-terrace.webp 800w,
+                                        assets/mezza-luna-terrace.webp 900w
+                                    "
+                                    sizes="50vw"
                                     alt="Mezza Luna open-air terrace restaurant with timber seating"
                                     class="project-image"
                                     width="900"
                                     height="1600"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
-                                    src="assets/mezza-luna-bar-terrace.jpeg"
+                                    src="assets/mezza-luna-bar-terrace.webp"
+                                    srcset="
+                                        assets/responsive/mezza-luna-bar-terrace.webp 800w,
+                                        assets/mezza-luna-bar-terrace.webp 900w
+                                    "
+                                    sizes="50vw"
                                     alt="Mezza Luna terrace dining area and bar with woven pendant lights"
                                     class="project-image"
                                     width="900"
                                     height="1600"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
-                                    src="assets/mystic-thai-terrace.jpg"
+                                    src="assets/mystic-thai-terrace.webp"
+                                    srcset="
+                                        assets/responsive/mystic-thai-terrace.webp 800w,
+                                        assets/mystic-thai-terrace.webp 1200w
+                                    "
+                                    sizes="50vw"
                                     alt="Mystic Thai covered terrace restaurant with timber ceiling and mural"
                                     class="project-image"
-                                    width="1800"
-                                    height="1350"
+                                    width="1200"
+                                    height="900"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
                         </div>
 
                         <div class="project-content">
@@ -322,41 +380,62 @@
                             class="project-gallery"
                             aria-label="23 LMR project photos"
                         >
-                            <div class="project-photo project-photo-featured">
+                            <button
+                                class="project-photo project-photo-featured"
+                                type="button"
+                            >
                                 <img
-                                    src="assets/23-lmr-building.jpg"
+                                    src="assets/23-lmr-building.webp"
+                                    srcset="
+                                        assets/responsive/23-lmr-building.webp 800w,
+                                        assets/23-lmr-building.webp 1200w
+                                    "
+                                    sizes="50vw"
                                     alt="23 LMR commercial building facade with architectural screening"
                                     class="project-image"
-                                    width="1800"
-                                    height="1350"
+                                    width="1200"
+                                    height="900"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
-                                    src="assets/23-lmr-open-floor.jpg"
+                                    src="assets/23-lmr-open-floor.webp"
+                                    srcset="
+                                        assets/responsive/23-lmr-open-floor.webp 800w,
+                                        assets/23-lmr-open-floor.webp 1200w
+                                    "
+                                    sizes="50vw"
                                     alt="Open commercial floor at 23 LMR with tiled finishes and perimeter glazing"
                                     class="project-image"
-                                    width="1800"
-                                    height="1350"
+                                    width="1200"
+                                    height="900"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
-                                    src="assets/23-lmr-interior-core.jpg"
+                                    src="assets/23-lmr-interior-core.webp"
+                                    srcset="
+                                        assets/responsive/23-lmr-interior-core.webp 800w,
+                                        assets/23-lmr-interior-core.webp 1200w
+                                    "
+                                    sizes="50vw"
                                     alt="Interior core at 23 LMR with custom ceiling and stair finishes"
                                     class="project-image"
-                                    width="1800"
-                                    height="1350"
+                                    width="1200"
+                                    height="900"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
                         </div>
 
                         <div class="project-content">
@@ -388,41 +467,62 @@
                             class="project-gallery"
                             aria-label="ZS office fit-out project photos"
                         >
-                            <div class="project-photo project-photo-featured">
+                            <button
+                                class="project-photo project-photo-featured"
+                                type="button"
+                            >
                                 <img
-                                    src="assets/zs-office-breakout.jpg"
+                                    src="assets/zs-office-breakout.webp"
+                                    srcset="
+                                        assets/responsive/zs-office-breakout.webp 800w,
+                                        assets/zs-office-breakout.webp 1200w
+                                    "
+                                    sizes="50vw"
                                     alt="ZS office breakout area with kitchenette and refined commercial finishes"
                                     class="project-image"
-                                    width="1800"
-                                    height="1350"
+                                    width="1200"
+                                    height="900"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
-                                    src="assets/zs-office-private-workspace.jpg"
+                                    src="assets/zs-office-private-workspace.webp"
+                                    srcset="
+                                        assets/responsive/zs-office-private-workspace.webp 800w,
+                                        assets/zs-office-private-workspace.webp 1200w
+                                    "
+                                    sizes="50vw"
                                     alt="ZS private office workspace with floor-to-ceiling glazing"
                                     class="project-image"
-                                    width="1800"
-                                    height="1350"
+                                    width="1200"
+                                    height="900"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
-                                    src="assets/zs-office-collab-workspaces.jpg"
+                                    src="assets/zs-office-collab-workspaces.webp"
+                                    srcset="
+                                        assets/responsive/zs-office-collab-workspaces.webp 800w,
+                                        assets/zs-office-collab-workspaces.webp 1200w
+                                    "
+                                    sizes="50vw"
                                     alt="ZS collaborative office workstations and integrated ceiling services"
                                     class="project-image"
-                                    width="1800"
-                                    height="1350"
+                                    width="1200"
+                                    height="900"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
                         </div>
 
                         <div class="project-content">
@@ -453,7 +553,10 @@
                             class="project-gallery"
                             aria-label="JPI industrial foundations project photos"
                         >
-                            <div class="project-photo project-photo-featured">
+                            <button
+                                class="project-photo project-photo-featured"
+                                type="button"
+                            >
                                 <img
                                     src="assets/20240227_094128-scaled.webp"
                                     alt="Industrial foundation construction for JPI"
@@ -461,23 +564,30 @@
                                     width="577"
                                     height="943"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
-                                    src="assets/jpi-foundations.jpg"
+                                    src="assets/jpi-foundations.webp"
+                                    srcset="
+                                        assets/responsive/jpi-foundations.webp 800w,
+                                        assets/jpi-foundations.webp 1200w
+                                    "
+                                    sizes="50vw"
                                     alt="Precision structural construction work for JPI"
                                     class="project-image"
                                     width="1200"
                                     height="499"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
 
-                            <div class="project-photo">
+                            <button class="project-photo" type="button">
                                 <img
                                     src="assets/23LMR-after-scaled.webp"
                                     alt="Construction work completed by Pothos Limited"
@@ -485,9 +595,10 @@
                                     width="577"
                                     height="943"
                                     loading="lazy"
+                                    fetchpriority="low"
                                     decoding="async"
                                 >
-                            </div>
+                            </button>
                         </div>
 
                         <div class="project-content">
@@ -521,14 +632,179 @@
                 <h2 class="section-title" id="gallery-title">Pothos Gallery</h2>
 
                 <div class="gallery-grid" aria-label="Pothos Limited photo gallery">
-                    <div class="gallery-placeholder" role="img" aria-label="Gallery photo placeholder 1"></div>
-                    <div class="gallery-placeholder" role="img" aria-label="Gallery photo placeholder 2"></div>
-                    <div class="gallery-placeholder" role="img" aria-label="Gallery photo placeholder 3"></div>
-                    <div class="gallery-placeholder" role="img" aria-label="Gallery photo placeholder 4"></div>
-                    <div class="gallery-placeholder" role="img" aria-label="Gallery photo placeholder 5"></div>
-                    <div class="gallery-placeholder" role="img" aria-label="Gallery photo placeholder 6"></div>
-                    <div class="gallery-placeholder" role="img" aria-label="Gallery photo placeholder 7"></div>
-                    <div class="gallery-placeholder" role="img" aria-label="Gallery photo placeholder 8"></div>
+                    <figure class="gallery-item">
+                        <img
+                            class="gallery-image"
+                            src="assets/MTR-interior2.webp"
+                            alt="Finished commercial interior by Pothos Limited"
+                            width="577"
+                            height="943"
+                            loading="lazy"
+                            fetchpriority="low"
+                            decoding="async"
+                        >
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            class="gallery-image"
+                            src="assets/mezza-luna-dining.webp"
+                            srcset="
+                                assets/responsive/mezza-luna-dining.webp 800w,
+                                assets/mezza-luna-dining.webp 900w
+                            "
+                            sizes="
+                                (max-width: 420px) calc(100vw - 36px),
+                                (max-width: 850px) 50vw,
+                                (max-width: 1100px) 33vw,
+                                25vw
+                            "
+                            alt="Mezza Luna dining room and curved timber ceiling"
+                            width="900"
+                            height="1600"
+                            loading="lazy"
+                            fetchpriority="low"
+                            decoding="async"
+                        >
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            class="gallery-image"
+                            src="assets/mystic-thai-terrace.webp"
+                            srcset="
+                                assets/responsive/mystic-thai-terrace.webp 800w,
+                                assets/mystic-thai-terrace.webp 1200w
+                            "
+                            sizes="
+                                (max-width: 420px) calc(100vw - 36px),
+                                (max-width: 850px) 50vw,
+                                (max-width: 1100px) 33vw,
+                                25vw
+                            "
+                            alt="Mystic Thai covered restaurant terrace"
+                            width="1200"
+                            height="900"
+                            loading="lazy"
+                            fetchpriority="low"
+                            decoding="async"
+                        >
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            class="gallery-image"
+                            src="assets/23-lmr-building.webp"
+                            srcset="
+                                assets/responsive/23-lmr-building.webp 800w,
+                                assets/23-lmr-building.webp 1200w
+                            "
+                            sizes="
+                                (max-width: 420px) calc(100vw - 36px),
+                                (max-width: 850px) 50vw,
+                                (max-width: 1100px) 33vw,
+                                25vw
+                            "
+                            alt="Completed 23 LMR commercial building facade"
+                            width="1200"
+                            height="900"
+                            loading="lazy"
+                            fetchpriority="low"
+                            decoding="async"
+                        >
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            class="gallery-image"
+                            src="assets/23-lmr-interior-core.webp"
+                            srcset="
+                                assets/responsive/23-lmr-interior-core.webp 800w,
+                                assets/23-lmr-interior-core.webp 1200w
+                            "
+                            sizes="
+                                (max-width: 420px) calc(100vw - 36px),
+                                (max-width: 850px) 50vw,
+                                (max-width: 1100px) 33vw,
+                                25vw
+                            "
+                            alt="Custom ceiling and staircase finishes at 23 LMR"
+                            width="1200"
+                            height="900"
+                            loading="lazy"
+                            fetchpriority="low"
+                            decoding="async"
+                        >
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            class="gallery-image"
+                            src="assets/zs-office-breakout.webp"
+                            srcset="
+                                assets/responsive/zs-office-breakout.webp 800w,
+                                assets/zs-office-breakout.webp 1200w
+                            "
+                            sizes="
+                                (max-width: 420px) calc(100vw - 36px),
+                                (max-width: 850px) 50vw,
+                                (max-width: 1100px) 33vw,
+                                25vw
+                            "
+                            alt="Finished ZS office breakout space"
+                            width="1200"
+                            height="900"
+                            loading="lazy"
+                            fetchpriority="low"
+                            decoding="async"
+                        >
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            class="gallery-image"
+                            src="assets/zs-office-collab-workspaces.webp"
+                            srcset="
+                                assets/responsive/zs-office-collab-workspaces.webp 800w,
+                                assets/zs-office-collab-workspaces.webp 1200w
+                            "
+                            sizes="
+                                (max-width: 420px) calc(100vw - 36px),
+                                (max-width: 850px) 50vw,
+                                (max-width: 1100px) 33vw,
+                                25vw
+                            "
+                            alt="ZS collaborative office workspaces"
+                            width="1200"
+                            height="900"
+                            loading="lazy"
+                            fetchpriority="low"
+                            decoding="async"
+                        >
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            class="gallery-image"
+                            src="assets/jpi-foundations.webp"
+                            srcset="
+                                assets/responsive/jpi-foundations.webp 800w,
+                                assets/jpi-foundations.webp 1200w
+                            "
+                            sizes="
+                                (max-width: 420px) calc(100vw - 36px),
+                                (max-width: 850px) 50vw,
+                                (max-width: 1100px) 33vw,
+                                25vw
+                            "
+                            alt="Industrial foundation construction for JPI"
+                            width="1200"
+                            height="499"
+                            loading="lazy"
+                            fetchpriority="low"
+                            decoding="async"
+                        >
+                    </figure>
                 </div>
             </div>
         </section>
@@ -585,6 +861,7 @@
                 class="lightbox-control lightbox-close"
                 type="button"
                 aria-label="Close photo viewer"
+                autofocus
             >&times;</button>
 
             <button
@@ -594,7 +871,7 @@
             >&#8249;</button>
 
             <figure class="lightbox-figure">
-                <img class="lightbox-image" src="" alt="">
+                <img class="lightbox-image" alt="">
                 <figcaption class="lightbox-caption" aria-live="polite"></figcaption>
             </figure>
 

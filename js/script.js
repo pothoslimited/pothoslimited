@@ -31,18 +31,25 @@ function setActiveNavigation(sectionId) {
 }
 
 if ("IntersectionObserver" in window) {
+    const visibleSections = new Map();
     const observer = new IntersectionObserver(
         (entries) => {
-            const visibleEntries = entries
-                .filter((entry) => entry.isIntersecting)
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    visibleSections.set(entry.target, entry.intersectionRatio);
+                } else {
+                    visibleSections.delete(entry.target);
+                }
+            });
+
+            const visibleEntries = Array.from(visibleSections)
                 .sort(
                     (firstEntry, secondEntry) =>
-                        secondEntry.intersectionRatio -
-                        firstEntry.intersectionRatio
+                        secondEntry[1] - firstEntry[1]
                 );
 
             if (visibleEntries.length > 0) {
-                setActiveNavigation(visibleEntries[0].target.id);
+                setActiveNavigation(visibleEntries[0][0].id);
             }
         },
         {
@@ -96,12 +103,16 @@ if (projectLightbox) {
             return;
         }
 
-        lightboxImage.src = image.currentSrc || image.src;
+        lightboxImage.src = image.src;
         lightboxImage.alt = image.alt;
         lightboxCaption.textContent = `${projectName || "Project"} - ${activePhotoIndex + 1} of ${activePhotos.length}`;
     }
 
     function openLightbox(photo) {
+        if (projectLightbox.open) {
+            return;
+        }
+
         activePhotos = Array.from(
             photo.closest(".project-gallery")?.querySelectorAll(".project-photo") || []
         );
@@ -124,17 +135,10 @@ if (projectLightbox) {
     }
 
     projectPhotos.forEach((photo) => {
-        photo.setAttribute("role", "button");
-        photo.setAttribute("tabindex", "0");
+        photo.setAttribute("aria-controls", projectLightbox.id);
         photo.setAttribute("aria-haspopup", "dialog");
 
         photo.addEventListener("click", () => openLightbox(photo));
-        photo.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                openLightbox(photo);
-            }
-        });
     });
 
     closeButton?.addEventListener("click", () => projectLightbox.close());
@@ -158,5 +162,13 @@ if (projectLightbox) {
     projectLightbox.addEventListener("close", () => {
         document.body.classList.remove("lightbox-open");
         lightboxImage?.removeAttribute("src");
+        lightboxImage?.removeAttribute("alt");
+
+        if (lightboxCaption) {
+            lightboxCaption.textContent = "";
+        }
+
+        activePhotos = [];
+        activePhotoIndex = 0;
     });
 }

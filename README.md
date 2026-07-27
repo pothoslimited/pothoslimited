@@ -18,4 +18,10 @@ Upload the repository contents to any static host, such as Netlify, Cloudflare P
 
 The production metadata currently uses `https://pothosltd.com/`. If the production domain changes, update the canonical URL and Open Graph URLs in `index.html`.
 
+The `_headers` file configures security headers on hosts that support the
+Netlify/Cloudflare Pages headers format. GitHub Pages ignores this file, so set
+the equivalent headers at a CDN or reverse proxy when hosting there. The page
+also includes a compatible Content Security Policy in a `<meta>` element as a
+fallback.
+
 Before publishing, confirm that every referenced file exists and test the page at mobile and desktop widths.
