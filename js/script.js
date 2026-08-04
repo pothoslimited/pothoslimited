@@ -91,6 +91,21 @@ if (projectLightbox) {
     let activePhotos = [];
     let activePhotoIndex = 0;
 
+    function markPhotoUnavailable(photo, image) {
+        if (photo.classList.contains("is-unavailable")) {
+            return;
+        }
+
+        const placeholder = document.createElement("span");
+        placeholder.className = "project-photo-placeholder";
+        placeholder.textContent = "Project photo coming soon";
+
+        photo.classList.add("is-unavailable");
+        photo.disabled = true;
+        photo.setAttribute("aria-label", `Photo unavailable: ${image.alt}`);
+        photo.append(placeholder);
+    }
+
     function renderActivePhoto() {
         const photo = activePhotos[activePhotoIndex];
         const image = photo?.querySelector(".project-image");
@@ -114,7 +129,9 @@ if (projectLightbox) {
         }
 
         activePhotos = Array.from(
-            photo.closest(".project-gallery")?.querySelectorAll(".project-photo") || []
+            photo.closest(".project-gallery")?.querySelectorAll(
+                ".project-photo:not(.is-unavailable)"
+            ) || []
         );
         activePhotoIndex = activePhotos.indexOf(photo);
 
@@ -135,8 +152,19 @@ if (projectLightbox) {
     }
 
     projectPhotos.forEach((photo) => {
+        const image = photo.querySelector(".project-image");
+
         photo.setAttribute("aria-controls", projectLightbox.id);
         photo.setAttribute("aria-haspopup", "dialog");
+
+        if (image) {
+            photo.setAttribute("aria-label", `View larger: ${image.alt}`);
+            image.addEventListener("error", () => markPhotoUnavailable(photo, image));
+
+            if (image.complete && image.naturalWidth === 0) {
+                markPhotoUnavailable(photo, image);
+            }
+        }
 
         photo.addEventListener("click", () => openLightbox(photo));
     });
