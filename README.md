@@ -25,3 +25,23 @@ also includes a compatible Content Security Policy in a `<meta>` element as a
 fallback.
 
 Before publishing, confirm that every referenced file exists and test the page at mobile and desktop widths.
+
+## Weekly maintenance agent
+
+The repository includes an audit-only Codex agent in
+`.github/workflows/weekly-maintenance.yml`. It runs every Monday at 8:17 a.m.
+Jamaica time and can also be started manually from the GitHub Actions page. The
+workflow runs deterministic checks, asks Codex to review the results, and opens
+a dated GitHub issue. It does not edit or deploy the website.
+
+Before enabling the workflow, create a repository Actions secret named
+`OPENAI_API_KEY`. Use a dedicated OpenAI Platform key with an appropriate usage
+budget; never add the key or a Codex `auth.json` file to this repository.
+
+Run the deterministic portion locally with:
+
+```sh
+./scripts/weekly-maintenance.sh
+```
+
+The generated `maintenance-report.md` is intentionally ignored by Git.
