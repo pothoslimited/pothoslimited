@@ -253,8 +253,8 @@ a {
 }
 
 .hero h1 {
-    margin-bottom: 14px;
-    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    margin-bottom: 20px;
+    font-size: clamp(1.7rem, 3.6vw, 2.25rem);
     font-weight: 700;
     line-height: 1.05;
     letter-spacing: -0.02em;
@@ -263,10 +263,13 @@ a {
 }
 
 .hero-statement {
-    margin-bottom: 12px;
+    margin: 18px 0 0;
+    color: #a5d983;
     font-size: clamp(1.15rem, 2.25vw, 1.5rem);
     font-weight: 700;
+    letter-spacing: 0.04em;
     line-height: 1.15;
+    text-transform: uppercase;
     text-wrap: balance;
     text-shadow: 0 3px 18px rgba(0, 0, 0, 0.5);
 }
@@ -457,6 +460,17 @@ a {
     grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
+.project-gallery-jpi {
+    grid-template-columns: 1fr 1fr 1.35fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    height: 100%;
+    min-height: 500px;
+}
+
+.project-photo-jpi-portrait {
+    grid-row: span 2;
+}
+
 .project-gallery-qsr {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(3, minmax(0, 1fr));
@@ -501,12 +515,33 @@ a {
     transform: none;
 }
 
+.project-gallery-jpi .project-image {
+    transform: none;
+}
+
+.project-image-jpi-reinforcement {
+    object-position: center 52%;
+}
+
+.project-image-jpi-concrete {
+    object-position: center 45%;
+}
+
+.project-image-jpi-completed,
+.project-image-jpi-blast-walls {
+    object-position: center 52%;
+}
+
 .project-photo:hover .project-image {
     filter: brightness(1.04);
     transform: scale(1.07);
 }
 
 .project-gallery-qsr .project-photo:hover .project-image {
+    transform: scale(1.025);
+}
+
+.project-gallery-jpi .project-photo:hover .project-image {
     transform: scale(1.025);
 }
 
@@ -823,6 +858,11 @@ body.lightbox-open {
         height: 510px;
     }
 
+    .project-gallery-jpi {
+        height: 500px;
+        min-height: 0;
+    }
+
     .site-nav {
         gap: 20px;
     }
@@ -952,16 +992,13 @@ body.lightbox-open {
     }
 
     .hero h1 {
-        font-size: clamp(2rem, 8vw, 2.4rem);
+        font-size: clamp(1.55rem, 6vw, 1.85rem);
         overflow-wrap: anywhere;
     }
 
     .hero-statement {
+        margin-top: 14px;
         font-size: clamp(1.05rem, 5vw, 1.25rem);
-    }
-
-    .hero-description {
-        margin-bottom: 0;
     }
 
     .services-grid,
@@ -979,6 +1016,10 @@ body.lightbox-open {
 
     .project-gallery-qsr {
         height: 324px;
+    }
+
+    .project-gallery-jpi {
+        height: 320px;
     }
 
     .project-content {
@@ -1022,7 +1063,7 @@ body.lightbox-open {
 
 @media (max-width: 420px) {
     .hero h1 {
-        font-size: clamp(1.85rem, 9vw, 2.15rem);
+        font-size: clamp(1.5rem, 6.5vw, 1.75rem);
     }
 
     .gallery-grid {
