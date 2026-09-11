@@ -28,6 +28,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height, 152px) + 16px);
 }
 
 body {
@@ -197,7 +198,7 @@ a {
 }
 
 .page-section {
-    scroll-margin-top: 120px;
+    scroll-margin-top: 0;
 }
 
 .hero {
@@ -310,6 +311,7 @@ a {
     transform: translateY(-2px);
 }
 
+.directors-section,
 .services-section,
 .projects-section,
 .gallery-section,
@@ -359,6 +361,57 @@ a {
     overflow-wrap: anywhere;
 }
 
+.directors-grid {
+    grid-template-columns: 1fr;
+    max-width: 1100px;
+    margin-inline: auto;
+}
+
+.director-card {
+    display: grid;
+    grid-template-columns: 224px minmax(0, 1fr);
+    align-items: start;
+    gap: 28px;
+    padding: 28px;
+    overflow: hidden;
+    background: var(--card-background);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-small);
+}
+
+.director-portrait {
+    width: 224px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.director-content {
+    display: grid;
+    gap: 16px;
+    padding: 0;
+    color: var(--text-secondary);
+}
+
+.director-content h3 {
+    color: var(--primary-dark);
+    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+    line-height: 1.3;
+}
+
+.director-credentials {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.director-title {
+    color: var(--primary-green);
+    font-weight: 700;
+}
+
 .services-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -404,7 +457,7 @@ a {
 .project-card {
     display: grid;
     grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.8fr);
-    scroll-margin-top: 140px;
+    scroll-margin-top: 0;
     min-width: 0;
     overflow: hidden;
     align-items: stretch;
@@ -545,7 +598,8 @@ a {
     transform: scale(1.025);
 }
 
-.project-photo.is-unavailable {
+.project-photo.is-unavailable,
+.gallery-item.is-unavailable {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -554,7 +608,8 @@ a {
         linear-gradient(135deg, rgba(15, 41, 30, 0.94), rgba(63, 120, 38, 0.82));
 }
 
-.project-photo.is-unavailable .project-image {
+.project-photo.is-unavailable .project-image,
+.gallery-item.is-unavailable .gallery-image {
     display: none;
 }
 
@@ -571,7 +626,8 @@ a {
     text-transform: uppercase;
 }
 
-.project-photo.is-unavailable .project-photo-placeholder {
+.project-photo.is-unavailable .project-photo-placeholder,
+.gallery-item.is-unavailable .project-photo-placeholder {
     display: block;
 }
 
@@ -639,9 +695,9 @@ body.lightbox-open {
 .project-lightbox {
     width: min(94vw, 1200px);
     max-width: none;
-    max-height: 94vh;
+    max-height: 94dvh;
+    overflow-y: auto;
     margin: auto;
-    overflow: hidden;
     padding: 0;
     color: var(--text-light);
     background: var(--footer-background);
@@ -671,11 +727,57 @@ body.lightbox-open {
     margin: 0;
 }
 
+.lightbox-media {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 120px;
+}
+
+.lightbox-media > * {
+    grid-area: 1 / 1;
+}
+
+.lightbox-figure {
+    touch-action: pan-y pinch-zoom;
+}
+
+.lightbox-feedback {
+    z-index: 1;
+    max-width: 32ch;
+    text-align: center;
+}
+
+.lightbox-feedback:has(.lightbox-status:empty) {
+    display: none;
+}
+
+.lightbox-retry {
+    min-height: 44px;
+    margin-top: 16px;
+    padding: 8px 20px;
+    color: var(--text-light);
+    background: var(--primary-green);
+    border: 1px solid var(--text-light);
+    border-radius: 999px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.lightbox-retry:focus-visible {
+    outline: 2px solid var(--text-light);
+    outline-offset: 4px;
+}
+
+.lightbox-image.is-pending {
+    visibility: hidden;
+}
+
 .lightbox-image {
     width: auto;
     max-width: 100%;
     height: auto;
-    max-height: 74vh;
+    max-height: max(80px, calc(94dvh - 160px));
     object-fit: contain;
 }
 
@@ -748,6 +850,10 @@ body.lightbox-open {
 .gallery-item {
     position: relative;
     min-height: 180px;
+    min-width: 0;
+    padding: 0;
+    cursor: zoom-in;
+    font: inherit;
     overflow: hidden;
     margin: 0;
     aspect-ratio: 4 / 3;
@@ -760,13 +866,25 @@ body.lightbox-open {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: filter var(--transition), transform var(--transition);
+    transition: filter 0.4s ease, transform 0.4s ease;
 }
 
-.gallery-item:hover .gallery-image {
-    filter: brightness(1.06);
-    transform: scale(1.025);
+@media (hover: hover) and (pointer: fine) {
+    .gallery-item:hover .gallery-image {
+        filter: brightness(1.06);
+        transform: scale(1.06);
+    }
 }
+
+.gallery-item:focus-visible {
+    outline: 3px solid var(--text-light);
+    outline-offset: 4px;
+}
+
+.gallery-item:active .gallery-image {
+    filter: brightness(1.06);
+}
+
 
 .contact-section {
     text-align: center;
@@ -886,29 +1004,42 @@ body.lightbox-open {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .page-section,
-    .project-card {
-        scroll-margin-top: 205px;
-    }
-
     .site-nav {
         min-height: auto;
         width: 100%;
         max-width: 100vw;
         overflow: hidden;
         flex-direction: column;
-        gap: 10px;
-        padding-top: 8px;
-        padding-bottom: 12px;
+        gap: 6px;
+        padding-top: 6px;
+        padding-bottom: 8px;
     }
 
     .logo-link {
-        width: min(330px, 88vw);
+        width: auto;
+        max-width: 100%;
+        flex-direction: row;
+        gap: 8px;
+        padding: 0;
     }
 
     .site-logo {
-        width: 105px;
-        margin-bottom: -25px;
+        width: 56px;
+        margin-bottom: 0;
+    }
+
+    .logo-copy {
+        width: auto;
+    }
+
+    .logo-name {
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+    }
+
+    .logo-tagline {
+        font-size: 0.55rem;
+        letter-spacing: 0.05em;
     }
 
     .nav-links {
@@ -949,33 +1080,32 @@ body.lightbox-open {
         --section-spacing: 42px;
     }
 
-    .page-section,
-    .project-card {
-        scroll-margin-top: 185px;
+    .director-card {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        padding: 22px;
     }
 
-    .logo-link {
-        width: min(310px, 100%);
-        overflow: hidden;
+    .director-portrait {
+        width: 208px;
+        max-width: 100%;
+        height: 260px;
+        justify-self: center;
     }
 
     .site-logo {
-        width: 88px;
-        margin-bottom: -21px;
+        width: 48px;
     }
 
     .logo-name {
-        font-size: clamp(0.8rem, 4.2vw, 1rem);
-        letter-spacing: 0.08em;
+        font-size: 1rem;
     }
 
     .logo-tagline {
-        font-size: clamp(0.43rem, 2vw, 0.54rem);
-        letter-spacing: 0.04em;
+        font-size: 0.5rem;
     }
 
     .nav-links {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 4px;
     }
 
@@ -1001,6 +1131,7 @@ body.lightbox-open {
         font-size: clamp(1.05rem, 5vw, 1.25rem);
     }
 
+    .directors-grid,
     .services-grid,
     .projects-grid {
         grid-template-columns: 1fr;
@@ -1028,7 +1159,7 @@ body.lightbox-open {
 
     .project-lightbox {
         width: 96vw;
-        max-height: 92vh;
+        max-height: 92dvh;
     }
 
     .lightbox-stage {
@@ -1037,7 +1168,7 @@ body.lightbox-open {
     }
 
     .lightbox-image {
-        max-height: 66vh;
+        max-height: max(80px, calc(92dvh - 220px));
     }
 
     .lightbox-previous,
@@ -1072,6 +1203,10 @@ body.lightbox-open {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .gallery-item .gallery-image {
+        transform: none !important;
+    }
+
     html {
         scroll-behavior: auto;
     }

@@ -290,6 +290,34 @@
             </div>
         </section>
 
+        <section class="page-section directors-section" id="directors" aria-labelledby="directors-title">
+            <div class="section-container">
+                <h2 class="section-title" id="directors-title">Our Directors</h2>
+                <div class="grid directors-grid">
+                    <article class="director-card">
+                        <img class="director-portrait" src="assets/lutfy-azan-portrait.webp"
+                            alt="Lutfy Azan" width="1122" height="1402" loading="lazy" decoding="async">
+                        <div class="director-content">
+                            <h3>Lutfy Azan<span class="director-credentials">M.Sc., P.E.</span></h3>
+                            <p class="director-title">Managing Director<br>Project &amp; Construction Management</p>
+                            <p>Civil engineer and construction leader delivering complex projects across Jamaica.</p>
+                            <p>Leads programme, commercial control, contractor coordination, QA/QC and site execution — from major infrastructure to commercial fit-outs and residential development.</p>
+                        </div>
+                    </article>
+                    <article class="director-card">
+                        <img class="director-portrait" src="assets/shalini-azan-portrait.webp"
+                            alt="Shalini Jagnarine-Azan" width="1122" height="1402" loading="lazy" decoding="async">
+                        <div class="director-content">
+                            <h3>Shalini Jagnarine-Azan<span class="director-credentials">M.Sc., DIC, FIStructE, P.E.</span></h3>
+                            <p class="director-title">Engineering Management &amp; Technical Assurance</p>
+                            <p>Fellow of the Institution of Structural Engineers and registered Professional Engineer in Jamaica and Trinidad &amp; Tobago.</p>
+                            <p>Leads design review, structural and civil governance, constructability, risk management and multidisciplinary coordination.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section class="page-section projects-section" id="projects">
             <div class="section-container">
                 <h2 class="section-title">PLACES WE&rsquo;VE CREATED</h2>
@@ -791,7 +819,7 @@
                 <h2 class="section-title" id="gallery-title">Pothos Gallery</h2>
 
                 <div class="gallery-grid" aria-label="Pothos Limited photo gallery">
-                    <figure class="gallery-item">
+                    <button class="gallery-item" type="button">
                         <img
                             class="gallery-image"
                             src="assets/MTR-interior2.webp"
@@ -802,9 +830,9 @@
                             fetchpriority="low"
                             decoding="async"
                         >
-                    </figure>
+                    </button>
 
-                    <figure class="gallery-item">
+                    <button class="gallery-item" type="button">
                         <img
                             class="gallery-image"
                             src="assets/mezza-luna-dining.webp"
@@ -825,9 +853,9 @@
                             fetchpriority="low"
                             decoding="async"
                         >
-                    </figure>
+                    </button>
 
-                    <figure class="gallery-item">
+                    <button class="gallery-item" type="button">
                         <img
                             class="gallery-image"
                             src="assets/mystic-thai-terrace.webp"
@@ -848,9 +876,9 @@
                             fetchpriority="low"
                             decoding="async"
                         >
-                    </figure>
+                    </button>
 
-                    <figure class="gallery-item">
+                    <button class="gallery-item" type="button">
                         <img
                             class="gallery-image"
                             src="assets/23-lmr-building.webp"
@@ -871,9 +899,9 @@
                             fetchpriority="low"
                             decoding="async"
                         >
-                    </figure>
+                    </button>
 
-                    <figure class="gallery-item">
+                    <button class="gallery-item" type="button">
                         <img
                             class="gallery-image"
                             src="assets/23-lmr-interior-core.webp"
@@ -894,9 +922,9 @@
                             fetchpriority="low"
                             decoding="async"
                         >
-                    </figure>
+                    </button>
 
-                    <figure class="gallery-item">
+                    <button class="gallery-item" type="button">
                         <img
                             class="gallery-image"
                             src="assets/zs-office-breakout.webp"
@@ -917,9 +945,9 @@
                             fetchpriority="low"
                             decoding="async"
                         >
-                    </figure>
+                    </button>
 
-                    <figure class="gallery-item">
+                    <button class="gallery-item" type="button">
                         <img
                             class="gallery-image"
                             src="assets/zs-office-collab-workspaces.webp"
@@ -940,9 +968,9 @@
                             fetchpriority="low"
                             decoding="async"
                         >
-                    </figure>
+                    </button>
 
-                    <figure class="gallery-item">
+                    <button class="gallery-item" type="button">
                         <img
                             class="gallery-image"
                             src="assets/jpi-completed-foundations.webp"
@@ -959,7 +987,7 @@
                             fetchpriority="low"
                             decoding="async"
                         >
-                    </figure>
+                    </button>
                 </div>
             </div>
         </section>
@@ -1009,7 +1037,7 @@
     <dialog
         class="project-lightbox"
         id="project-lightbox"
-        aria-label="Project photo viewer"
+        aria-label="Photo viewer"
     >
         <div class="lightbox-stage">
             <button
@@ -1026,7 +1054,13 @@
             >&#8249;</button>
 
             <figure class="lightbox-figure">
-                <img class="lightbox-image" alt="">
+                <div class="lightbox-media">
+                    <img class="lightbox-image" alt="" draggable="false">
+                    <div class="lightbox-feedback">
+                        <p class="lightbox-status" role="status" aria-live="polite"></p>
+                        <button class="lightbox-retry" type="button" hidden>Try again</button>
+                    </div>
+                </div>
                 <figcaption class="lightbox-caption" aria-live="polite"></figcaption>
             </figure>
 
