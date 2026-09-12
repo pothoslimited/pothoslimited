@@ -136,7 +136,7 @@ if (projectLightbox) {
         }
 
         const request = ++photoRequest;
-        const caption = `${photo.dataset.caption || projectName || image.alt} - ${activePhotoIndex + 1} of ${activePhotos.length}`;
+        const caption = `${projectName || image.alt} - ${activePhotoIndex + 1} of ${activePhotos.length}`;
         const pendingImage = new Image();
         lightboxImage.classList.add("is-pending");
         lightboxImage.setAttribute("aria-busy", "true");

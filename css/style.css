@@ -497,36 +497,6 @@ a {
     font: inherit;
 }
 
-.project-photo-reference {
-    position: relative;
-}
-
-.photo-reference-label {
-    position: absolute;
-    right: 8px;
-    bottom: 8px;
-    padding: 4px 8px;
-    color: var(--text-light);
-    background: rgba(8, 20, 15, 0.88);
-    border-radius: 4px;
-    font-size: 0.72rem;
-}
-
-.project-content .photo-credit {
-    margin-top: auto;
-    font-size: 0.75rem;
-    line-height: 1.5;
-}
-
-.photo-credit a {
-    text-underline-offset: 3px;
-}
-
-.photo-credit a:focus-visible {
-    outline: 2px solid var(--primary-green);
-    outline-offset: 3px;
-}
-
 .project-photo:focus-visible {
     position: relative;
     z-index: 1;
